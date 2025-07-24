@@ -1,0 +1,77 @@
+# Visual Studio user-specific files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+[Bb]in/
+[Oo]bj/
+
+# Rider specific files
+.idea/
+*.sln.iml
+
+# Visual Studio Code specific files
+.vscode/
+
+# .NET specific files
+*.log
+*.logs
+*.pid
+*.seed
+*.pid.lock
+*.dll
+*.exe
+*.pdb
+*.cache
+*.ilk
+*.meta
+*.mdb
+*.opendb
+*.ide
+
+# Publish directories
+publish/
+out/
+
+# NuGet Packages
+*.nupkg
+packages/
+*.snupkg
+.nuget/
+global.json
+project.lock.json
+project.fragment.lock.json
+artifacts/
+TestResults/
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Mac files
+.DS_Store
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# Entity Framework migrations
+efbundle
+
+# dotenv environment variables
+.env
+
+# Temporary files
+tmp/
+temp/
+
+# node_modules (if you use frontend tools)
+node_modules/
