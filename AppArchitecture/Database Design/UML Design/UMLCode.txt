@@ -1,0 +1,223 @@
+@startuml
+entity Student {
+  +StudentID : PK
+  FirstName
+  LastName
+  Password
+  ParentsID : FK
+  ContactDetailsID : FK
+  MaritalStatus
+  DateOfBirth
+  Nationality
+  Gender
+  RegistrationDate
+  LastLogin
+  StudentLanguagesID : FK
+  PreviousEducation : FK
+  UrgentContactID : FK
+}
+
+entity StudentAddress {
+StudentID (PK)
+AddressDetailsID (FK)
+}
+
+entity UniversityAddress {
+UniversityID (PK)
+AddressDetailsID (FK)
+}
+
+entity FacultyAddress {
+FacultyID (PK)
+AddressDetailsID (FK)
+}
+
+entity UrgentContact {
+  +UrgentContactID : PK
+  StudentID : FK
+  ContactDetailsID : FK
+}
+
+entity Languages {
+  +LanguageID : PK
+  LanguageName
+}
+
+entity StudentLanguages {
+  +StudentLanguageID : PK
+  StudentID : FK
+  LanguageID : FK
+  OverallProficiencyLevel
+  ReadingLevel
+  WritingLevel
+  SpeakingLevel
+  ListeningLevel
+}
+
+entity ContactDetails {
+  +ContactDetailsID : PK
+  StudentID : FK
+  AddressDetailsID : FK
+  Email
+  IsEmailVerified
+  Phone
+  IsPhoneVerified
+  Fax
+}
+
+entity AddressDetails {
+  +AddressDetailsID : PK
+  AddressLine1
+  AddressLine2
+  City
+  State
+  Country
+  ZipCode
+}
+
+entity Parents {
+  +ParentsID : PK
+  StudentID : FK
+  FatherFirstName
+  FatherLastName
+  MotherFirstName
+  MotherLastName
+}
+
+entity University {
+  +UniversityID : PK
+  Name
+  Country
+  City
+  Website
+}
+
+entity Faculty {
+  +FacultyID : PK
+  UniversityID : FK
+  Name
+  Description
+}
+
+entity ProgramLevel {
+  +ProgramLevelID : PK
+  Name
+}
+
+entity Certificate {
+  +CertificateID : PK
+  Name
+  Description
+}
+
+entity StudyLocation {
+  +StudyLocationID : PK
+  Country
+  City
+  CampusName
+  Address
+}
+
+entity Program {
+  +ProgramID : PK
+  UniversityID : FK
+  FacultyID : FK
+  Title
+  Description
+  Department
+  ProgramLevelID : FK
+  Duration
+  TuitionFee
+  StartDate
+  ApplicationDeadline
+  CertificateID : FK
+  StudyLocationID : FK
+}
+
+entity Application {
+  +ApplicationID : PK
+  StudentID : FK
+  ProgramID : FK
+  SubmissionDate
+  Status
+  ReviewedBy : FK (Staff)
+  LastUpdated
+}
+
+entity Document {
+  +DocumentID : PK
+  ApplicationID : FK
+  DocumentType
+  FilePath
+  UploadDate
+  Verified
+}
+
+entity Message {
+  +MessageID : PK
+  SenderID : FK (Staff or Student)
+  ReceiverID : FK (Staff or Student)
+  Subject
+  Body
+  Timestamp
+  IsRead
+}
+
+entity Payment {
+  +PaymentID : PK
+  ApplicationID : FK
+  Amount
+  PaymentDate
+  Method
+  Status
+}
+
+entity Staff {
+  +StaffID : PK
+  FirstName
+  LastName
+  Email
+  Password
+  ContactDetailsID : FK
+}
+
+entity Role {
+  +RoleID : PK
+  RoleName
+  Description
+}
+
+entity StaffRoles {
+  +StaffRoleID : PK
+  StaffID : FK
+  RoleID : FK
+}
+
+' Relationships
+University ||--o{ Faculty : has
+University ||--o{ Program : offers
+Faculty ||--o{ Program : contains
+ProgramLevel ||--o{ Program : defines
+Certificate ||--o{ Program : grants
+StudyLocation ||--o{ Program : hosted_at
+Student ||--o{ ContactDetails : has
+Student ||--o{ UrgentContact : has
+Student ||--o{ Parents : has
+Student ||--o{ StudentLanguages : knows
+Student ||--o{ Application : applies
+Application ||--o{ Document : includes
+Application ||--o{ Payment : generates
+Application ||--o{ Program : targets
+Application ||--|| Staff : reviewed_by
+Message ||--|| Student : sender_receiver
+Message ||--|| Staff : sender_receiver
+Staff ||--o{ StaffRoles : assigned
+Role ||--o{ StaffRoles : defined
+Student ||--o{ StudentAddress : has_address
+University ||--o{ UniversityAddress : has_address
+Faculty ||--o{ FacultyAddress : has_address
+
+StudentAddress }o--|| AddressDetails : located_at
+UniversityAddress }o--|| AddressDetails : located_at
+FacultyAddress }o--|| AddressDetails : located_at
+@enduml
