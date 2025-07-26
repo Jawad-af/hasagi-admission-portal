@@ -1,3 +1,10 @@
+The code can run inside his website
+https://www.plantuml.com
+
+-------------------
+SRC CODE
+-------------------
+
 @startuml
 entity Student {
   +StudentID : PK
