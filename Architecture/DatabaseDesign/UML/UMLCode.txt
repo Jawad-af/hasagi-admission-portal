@@ -4,7 +4,6 @@ https://www.plantuml.com
 -------------------
 SRC CODE
 -------------------
-
 @startuml
 entity Student {
   +StudentID : PK
@@ -29,6 +28,21 @@ StudentID (PK)
 AddressDetailsID (FK)
 }
 
+entity PreviousEducation {
+  +PreviousEducationID : PK
+  StudentID : FK
+  InstitutionName
+  Country
+  City
+  DegreeName
+  FieldOfStudy
+  StartDate
+  EndDate
+  GPA
+  CertificateReceived
+  DocumentID : FK
+}
+
 entity UniversityAddress {
 UniversityID (PK)
 AddressDetailsID (FK)
@@ -42,7 +56,10 @@ AddressDetailsID (FK)
 entity UrgentContact {
   +UrgentContactID : PK
   StudentID : FK
-  ContactDetailsID : FK
+  FirstName
+  LastName
+  Email
+  PhoneNumber
 }
 
 entity Languages {
@@ -115,6 +132,16 @@ entity Certificate {
   +CertificateID : PK
   Name
   Description
+  IssuingAuthority
+  Country
+  Language
+  Level
+  ValidFrom
+  ValidUntil
+  IsPermanent
+  DocumentID : FK
+  CreatedAt
+  UpdatedAt
 }
 
 entity StudyLocation {
@@ -200,18 +227,21 @@ entity StaffRoles {
   RoleID : FK
 }
 
+
 ' Relationships
 University ||--o{ Faculty : has
 University ||--o{ Program : offers
 Faculty ||--o{ Program : contains
 ProgramLevel ||--o{ Program : defines
 Certificate ||--o{ Program : grants
+Certificate ||--o{ Document : has_file
 StudyLocation ||--o{ Program : hosted_at
 Student ||--o{ ContactDetails : has
 Student ||--o{ UrgentContact : has
 Student ||--o{ Parents : has
 Student ||--o{ StudentLanguages : knows
-Student ||--o{ Application : applies
+Student ||--o{ Application : appliesConta
+Student ||--o{ Certificate : owns_optional
 Application ||--o{ Document : includes
 Application ||--o{ Payment : generates
 Application ||--o{ Program : targets
@@ -223,8 +253,11 @@ Role ||--o{ StaffRoles : defined
 Student ||--o{ StudentAddress : has_address
 University ||--o{ UniversityAddress : has_address
 Faculty ||--o{ FacultyAddress : has_address
-
+Languages ||--o{ StudentLanguages : includes
 StudentAddress }o--|| AddressDetails : located_at
 UniversityAddress }o--|| AddressDetails : located_at
 FacultyAddress }o--|| AddressDetails : located_at
+ContactDetails }o--|| AddressDetails : uses
+Student ||--o{ PreviousEducation : studied_at
+Document ||--o{ PreviousEducation : proves
 @enduml
