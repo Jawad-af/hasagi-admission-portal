@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Services\" />
+    <Folder Include="Persistance\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 

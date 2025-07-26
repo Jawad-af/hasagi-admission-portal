@@ -10,4 +10,13 @@
     <ProjectReference Include="..\AdmissionPortal.Domain\AdmissionPortal.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Mappings\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Services\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
 </Project>
