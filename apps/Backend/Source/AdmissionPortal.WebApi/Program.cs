@@ -1,23 +1,46 @@
+using AdmissionPortal.WebApi.Configurators;
+using AdmissionPortal.WebApi.Injectors;
+using Ultimate.Cors.Configurators;
+using Ultimate.Cors.Injectors;
+using Ultimate.Exceptions.Configurators;
+using Ultimate.Exceptions.Injectors;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Configure(builder.Configuration.GetSection("Kestrel"));
+});
 
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Options
+builder.Services.ConfigureJwtOptions(builder.Configuration);
+
+// Logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+
+// Services
+builder.Services.InjectIdentity();
 builder.Services.AddOpenApi();
+builder.Services.InjectDbContext(builder.Configuration);
+builder.Services.InjectAutoMapper();
+builder.Services.InjectMediatR();
+builder.Services.InjectDomainServices();
+builder.Services.InjectHybridCaching(builder.Configuration);
+builder.Services.AddControllers();
+builder.Services.InjectSwagger();
+builder.Services.InjectGlobalExceptionMiddleware();
+builder.Services.InjectCORS();
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
+app.ConfigureGlobalExceptionMiddleware();
+app.ConfigureCORS();
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();

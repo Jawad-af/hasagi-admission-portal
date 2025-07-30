@@ -8,15 +8,19 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AdmissionPortal.Domain\AdmissionPortal.Domain.csproj" />
+    <ProjectReference Include="..\Ultimate.Exceptions\Ultimate.Exceptions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="DTOs\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Infrastructure\" />
-    <Folder Include="Services\" />
     <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
+	<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.7" />
   </ItemGroup>
 
 </Project>
