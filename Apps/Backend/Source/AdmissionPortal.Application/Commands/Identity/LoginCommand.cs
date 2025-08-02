@@ -1,16 +1,17 @@
 ﻿using AdmissionPortal.Application.DTOs.Identity;
 using AdmissionPortal.Application.Services.Identity.Interfaces;
 using Microsoft.Extensions.Logging;
+using Ultimate.Mediator.Interfaces;
 
 namespace AdmissionPortal.Application.Commands.Identity
 {
-    public class LoginCommand
+    public class LoginCommand : ICommand<AuthenticationResponseDto>
     {
         public string Email { get; set; } = default!;
         public string Password { get; set; } = default!;
     }
 
-    public class LoginCommandHandler
+    public class LoginCommandHandler : ICommandHandler<LoginCommand, AuthenticationResponseDto>
     {
         private readonly IIdentityService _identityService;
         private readonly ILogger<LoginCommandHandler> _logger;
@@ -22,7 +23,7 @@ namespace AdmissionPortal.Application.Commands.Identity
             _identityService = identityService;
         }
 
-        public async Task<AuthenticationResponseDto> Handle(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<AuthenticationResponseDto> HandleAsync(LoginCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Started logging in user with email: {Email}", request.Email);
 

@@ -9,6 +9,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\AdmissionPortal.Domain\AdmissionPortal.Domain.csproj" />
 		<ProjectReference Include="..\Ultimate.Exceptions\Ultimate.Exceptions.csproj" />
+		<ProjectReference Include="..\Ultimate.Mediator\Ultimate.Mediator.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -20,7 +21,6 @@
 		<PackageReference Include="Mapster" Version="7.4.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.7" />
-		<PackageReference Include="WolverineFx" Version="4.8.0" />
 	</ItemGroup>
 
 </Project>
