@@ -7,10 +7,8 @@ using Ultimate.Exceptions.Injectors;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.Configure(builder.Configuration.GetSection("Kestrel"));
-});
+// Kestrel run on 8000
+builder.WebHost.InjectKestrel(builder.Configuration);
 
 // Options
 builder.Services.ConfigureJwtOptions(builder.Configuration);

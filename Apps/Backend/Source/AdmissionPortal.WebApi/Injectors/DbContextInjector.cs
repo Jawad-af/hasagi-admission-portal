@@ -14,7 +14,7 @@ namespace AdmissionPortal.WebApi.Injectors
 
             services.AddDbContext<AdmissionPortalDbContext>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseNpgsql(configuration.GetConnectionString("Default"));
             });
 
             Console.WriteLine("Finished InjectDbContext");
