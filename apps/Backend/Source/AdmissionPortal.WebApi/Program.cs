@@ -22,7 +22,7 @@ builder.Logging.AddDebug();
 builder.Services.InjectIdentity();
 builder.Services.AddOpenApi();
 builder.Services.InjectDbContext(builder.Configuration);
-builder.Services.InjectAutoMapper();
+builder.Services.InjectMapster();
 builder.Host.InjectWolverine();
 builder.Services.InjectDomainServices();
 builder.Services.InjectHybridCaching(builder.Configuration);
