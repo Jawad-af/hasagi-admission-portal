@@ -13,7 +13,9 @@ namespace AdmissionPortal.WebApi.Injectors
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<AdmissionPortalDbContext>());
 
             services.AddDbContext<AdmissionPortalDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            {
+                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            });
 
             Console.WriteLine("Finished InjectDbContext");
         }
