@@ -1,18 +1,17 @@
 ﻿using AdmissionPortal.Application.DTOs.Identity;
 using AdmissionPortal.Application.Services.Identity.Interfaces;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace AdmissionPortal.Application.Commands.Identity
 {
-    public class SignupCommand : IRequest<AuthenticationResponseDto>
+    public class SignupCommand
     {
         public string FullName { get; set; } = default!;
         public string Email { get; set; } = default!;
         public string Password { get; set; } = default!;
     }
 
-    public class SignupCommandHandler : IRequestHandler<SignupCommand, AuthenticationResponseDto>
+    public class SignupCommandHandler
     {
         private readonly IIdentityService _identityService;
         private readonly ILogger<SignupCommandHandler> _logger;

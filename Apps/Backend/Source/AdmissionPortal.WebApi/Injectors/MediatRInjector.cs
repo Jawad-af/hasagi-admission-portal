@@ -1,19 +1,21 @@
 ﻿using AdmissionPortal.Application;
+using Wolverine;
 
 namespace AdmissionPortal.WebApi.Injectors
 {
     public static class MediatRInjector
     {
-        public static void InjectMediatR(this IServiceCollection services)
+        public static void InjectWolverine(this IHostBuilder builder)
         {
-            Console.WriteLine("Started InjectMediatR");
+            Console.WriteLine("Started InjectWolverine");
 
-            services.AddMediatR(cfg =>
+            builder.UseWolverine(opts =>
             {
-                cfg.RegisterServicesFromAssembly(typeof(IApplicationMarker).Assembly);
+                opts.Durability.Mode = DurabilityMode.MediatorOnly;
+                opts.Discovery.IncludeAssembly(typeof(IApplicationMarker).Assembly);
             });
 
-            Console.WriteLine("Finished InjectMediatR");
+            Console.WriteLine("Finished InjectWolverine");
         }
     }
 }

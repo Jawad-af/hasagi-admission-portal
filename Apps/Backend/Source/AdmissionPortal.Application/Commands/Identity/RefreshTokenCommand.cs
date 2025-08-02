@@ -1,17 +1,16 @@
 ﻿using AdmissionPortal.Application.DTOs.Identity;
 using AdmissionPortal.Application.Services.Identity.Interfaces;
-using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace AdmissionPortal.Application.Commands.Identity
 {
-    public class RefreshTokenCommand : IRequest<AuthenticationResponseDto>
+    public class RefreshTokenCommand
     {
         public string RefreshToken { get; set; } = default!;
         public string UserId { get; set; } = default!;
     }
 
-    public class RefreshTokenCommandHandler : IRequestHandler<RefreshTokenCommand, AuthenticationResponseDto>
+    public class RefreshTokenCommandHandler
     {
         private readonly ILogger<RefreshTokenCommandHandler> _logger;
         private readonly IIdentityService _identityService;

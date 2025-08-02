@@ -25,7 +25,7 @@ builder.Services.InjectIdentity();
 builder.Services.AddOpenApi();
 builder.Services.InjectDbContext(builder.Configuration);
 builder.Services.InjectAutoMapper();
-builder.Services.InjectMediatR();
+builder.Host.InjectWolverine();
 builder.Services.InjectDomainServices();
 builder.Services.InjectHybridCaching(builder.Configuration);
 builder.Services.AddControllers();
