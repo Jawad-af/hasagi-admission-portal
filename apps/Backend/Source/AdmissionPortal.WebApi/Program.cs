@@ -1,9 +1,12 @@
+using AdmissionPortal.Application;
+using AdmissionPortal.Application.Commands.Identity;
 using AdmissionPortal.WebApi.Configurators;
 using AdmissionPortal.WebApi.Injectors;
 using Ultimate.Cors.Configurators;
 using Ultimate.Cors.Injectors;
 using Ultimate.Exceptions.Configurators;
 using Ultimate.Exceptions.Injectors;
+using Wolverine;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +26,7 @@ builder.Services.InjectIdentity(builder.Configuration);
 builder.Services.AddOpenApi();
 builder.Services.InjectDbContext(builder.Configuration);
 builder.Services.InjectMapster();
-builder.Services.InjectMediator();
+builder.Host.InjectMediator();
 builder.Services.InjectDomainServices();
 builder.Services.InjectHybridCaching(builder.Configuration);
 builder.Services.AddControllers();

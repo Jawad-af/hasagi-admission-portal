@@ -15,6 +15,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="WolverineFx" Version="4.8.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -22,7 +23,6 @@
 		<ProjectReference Include="..\AdmissionPortal.Infrastructure\AdmissionPortal.Infrastructure.csproj" />
 		<ProjectReference Include="..\Ultimate.Cors\Ultimate.Cors.csproj" />
 		<ProjectReference Include="..\Ultimate.Exceptions\Ultimate.Exceptions.csproj" />
-		<ProjectReference Include="..\Ultimate.Mediator\Ultimate.Mediator.csproj" />
 	</ItemGroup>
 
 </Project>

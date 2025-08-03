@@ -1,17 +1,16 @@
 ﻿using AdmissionPortal.Application.DTOs.Identity;
 using AdmissionPortal.Application.Services.Identity.Interfaces;
 using Microsoft.Extensions.Logging;
-using Ultimate.Mediator.Interfaces;
 
 namespace AdmissionPortal.Application.Commands.Identity
 {
-    public class RefreshTokenCommand : ICommand<AuthenticationResponseDto>
+    public class RefreshTokenCommand 
     {
         public required string AccessToken { get; set; }
         public required string RefreshToken { get; set; }
     }
 
-    public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, AuthenticationResponseDto>
+    public class RefreshTokenCommandHandler
     {
         private readonly ILogger<RefreshTokenCommandHandler> _logger;
         private readonly IIdentityService _identityService;
@@ -23,7 +22,7 @@ namespace AdmissionPortal.Application.Commands.Identity
             _identityService = identityService;
         }
 
-        public async Task<AuthenticationResponseDto> HandleAsync(RefreshTokenCommand request, CancellationToken cancellationToken)
+        public async Task<AuthenticationResponseDto> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Started refreshing token");
 

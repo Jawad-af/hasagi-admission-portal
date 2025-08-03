@@ -9,7 +9,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\AdmissionPortal.Domain\AdmissionPortal.Domain.csproj" />
 		<ProjectReference Include="..\Ultimate.Exceptions\Ultimate.Exceptions.csproj" />
-		<ProjectReference Include="..\Ultimate.Mediator\Ultimate.Mediator.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
