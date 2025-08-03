@@ -1,5 +1,5 @@
 ﻿using AdmissionPortal.Domain.Abstractions;
-using AdmissionPortal.Domain.Entities.Identity;
+using AdmissionPortal.Domain.Entities.Identity.Authentication;
 
 namespace AdmissionPortal.Application.Validations.Identity.Interfaces
 {

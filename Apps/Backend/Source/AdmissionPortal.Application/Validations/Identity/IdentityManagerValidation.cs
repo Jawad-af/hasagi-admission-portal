@@ -40,9 +40,14 @@ namespace AdmissionPortal.Application.Validations.Identity
             return user!;
         }
 
-        public async Task<ApplicationUser> Validate_GetUserById(string userId, CancellationToken cancellationToken = default)
+        public async Task<ApplicationUser> Validate_GetUserById(string? userId, CancellationToken cancellationToken = default)
         {
-            ApplicationUser? user = await _userManager.FindByIdAsync(userId);
+            if(userId == null)
+            {
+                AdmissionPortalExceptions.ThrowUnAuthorizedException("Invalid userId");
+            }
+
+            ApplicationUser? user = await _userManager.FindByIdAsync(userId!);
 
             if (user == null)
             {

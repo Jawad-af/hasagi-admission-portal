@@ -4,7 +4,6 @@ using Ultimate.Cors.Configurators;
 using Ultimate.Cors.Injectors;
 using Ultimate.Exceptions.Configurators;
 using Ultimate.Exceptions.Injectors;
-using Ultimate.Mediator.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +19,7 @@ builder.Logging.AddConsole();
 builder.Logging.AddDebug();
 
 // Services
-builder.Services.InjectIdentity();
+builder.Services.InjectIdentity(builder.Configuration);
 builder.Services.AddOpenApi();
 builder.Services.InjectDbContext(builder.Configuration);
 builder.Services.InjectMapster();

@@ -7,8 +7,8 @@ namespace AdmissionPortal.Application.Commands.Identity
 {
     public class RefreshTokenCommand : ICommand<AuthenticationResponseDto>
     {
-        public string RefreshToken { get; set; } = default!;
-        public string UserId { get; set; } = default!;
+        public required string AccessToken { get; set; }
+        public required string RefreshToken { get; set; }
     }
 
     public class RefreshTokenCommandHandler : ICommandHandler<RefreshTokenCommand, AuthenticationResponseDto>
@@ -25,7 +25,7 @@ namespace AdmissionPortal.Application.Commands.Identity
 
         public async Task<AuthenticationResponseDto> HandleAsync(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Started refreshing token for user : {UserId}", request.UserId);
+            _logger.LogInformation("Started refreshing token");
 
             AuthenticationResponseDto response = await _identityService.RefreshToken(request, cancellationToken);
 

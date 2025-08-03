@@ -1,4 +1,5 @@
 ﻿using AdmissionPortal.Domain.Entities.Identity;
+using AdmissionPortal.Domain.Entities.Identity.Authentication;
 using AdmissionPortal.Domain.Infrastructure;
 using AdmissionPortal.Infrastructure.Caching;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

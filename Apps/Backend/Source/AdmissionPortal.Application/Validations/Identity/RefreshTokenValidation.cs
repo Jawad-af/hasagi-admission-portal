@@ -1,5 +1,5 @@
 ﻿using AdmissionPortal.Application.Validations.Identity.Interfaces;
-using AdmissionPortal.Domain.Entities.Identity;
+using AdmissionPortal.Domain.Entities.Identity.Authentication;
 using AdmissionPortal.Domain.Exceptions;
 using AdmissionPortal.Domain.Infrastructure;
 using Microsoft.EntityFrameworkCore;

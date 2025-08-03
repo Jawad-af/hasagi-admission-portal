@@ -3,7 +3,9 @@ using AdmissionPortal.Application.DTOs.Identity;
 using AdmissionPortal.Application.Services.Identity.Interfaces;
 using AdmissionPortal.Application.Validations.Identity.Interfaces;
 using AdmissionPortal.Domain.Entities.Identity;
+using AdmissionPortal.Domain.Entities.Identity.Authentication;
 using AdmissionPortal.Domain.Infrastructure;
+using System.Security.Claims;
 
 namespace AdmissionPortal.Application.Services.Identity
 {
@@ -38,9 +40,13 @@ namespace AdmissionPortal.Application.Services.Identity
 
         public async Task<AuthenticationResponseDto> RefreshToken(RefreshTokenCommand command, CancellationToken cancellationToken)
         {
-            ApplicationUser user = await _userManagerValidation.Validate_GetUserById(command.UserId, cancellationToken);
+            ClaimsPrincipal? claims = _tokenService.GetPrincipalFromExpiredToken(command.AccessToken, command.RefreshToken);
 
-            RefreshToken token = await _refreshTokenValidation.Validate_GetRefreshToken(command.RefreshToken, command.UserId, cancellationToken);
+            string? userId = claims?.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            ApplicationUser user = await _userManagerValidation.Validate_GetUserById(userId, cancellationToken);
+
+            RefreshToken token = await _refreshTokenValidation.Validate_GetRefreshToken(command.RefreshToken, userId!, cancellationToken);
 
             token!.IsRevoked = true;
 
